@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dhekz Hosting - Hosting Cepat & Stabil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            margin: 0;
+            background: #0b0f1a;
+            color: #eaeaea;
+            min-height: 100vh;
+        }
+        
+        /* NAVBAR */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1e293b;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        nav h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        nav a {
+            color: #eaeaea;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: #a5b4fc;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* HERO HOSTING */
+        .hero-host {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at top, #1e293b, transparent), #0b0f1a;
+            padding: 20px;
+        }
+        
+        .hero-host-content {
+            max-width: 900px;
+        }
+        
+        .hero-host h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-host h1 span {
+            background: linear-gradient(135deg, #22d3ee, #4f46e5);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-host p {
+            color: #ccc;
+            margin: 0 auto 30px;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 700px;
+        }
+        
+        /* BUTTON STYLES */
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #4f46e5, #22d3ee);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: .3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            opacity: .9;
+        }
+        
+        /* SECTION TITLES */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #eaeaea, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-title p {
+            color: #aaa;
+            font-size: 18px;
+        }
+        
+        /* SECTION STYLES */
+        section {
+            padding: 80px 8%;
+        }
+        
+        /* WHY US SECTION */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .card {
+            background: #111827;
+            padding: 30px;
+            border-radius: 14px;
+            border: 1px solid #1f2937;
+            transition: .3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #4f46e5;
+        }
+        
+        .card i {
+            font-size: 45px;
+            color: #22d3ee;
+            margin-bottom: 15px;
+        }
+        
+        .card h3 {
+            margin-bottom: 10px;
+        }
+        
+        .card p {
+            color: #aaa;
+        }
+        
+        /* STATS SECTION */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat {
+            background: #111827;
+            padding: 40px 20px;
+            border-radius: 14px;
+            border: 1px solid #1f2937;
+        }
+        
+        .stat h3 {
+            font-size: 40px;
+            color: #22d3ee;
+        }
+        
+        .stat p {
+            color: #aaa;
+        }
+        
+        /* CTA SECTION */
+        .cta {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(34, 211, 238, 0.1));
+            border-radius: 20px;
+            padding: 60px;
+            margin-top: 50px;
+        }
+        
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+        }
+        
+        /* FOOTER */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            background: #020617;
+            border-top: 1px solid #1e293b;
+            font-size: 15px;
+            opacity: 0.8;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-highlight {
+            color: #a5b4fc;
+            font-weight: 600;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-host h1 {
+                font-size: 40px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 16px 20px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .cta {
+                padding: 40px 20px;
+            }
+            
+            .cta h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-brand">
+            <div class="logo-icon">🖥️</div>
+            <h1>dhekz Hosting</h1>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="panels.html">Paket Hosting</a>
+            <a href="contact.html">Kontak</a>
+        </div>
+    </nav>
+
+    <!-- HERO HOSTING SECTION -->
+    <section class="hero-host">
+        <div class="hero-host-content">
+            <h1>Hosting <span>Cepat, Stabil & Aman</span></h1>
+            <p>
+                Solusi hosting premium untuk website, bot, panel Pterodactyl, dan aplikasi Anda.
+                Performa tinggi, uptime maksimal, dan support responsif.
+            </p>
+            <a href="panels.html" class="btn">Lihat Paket Hosting</a>
+        </div>
+    </section>
+
+    <!-- WHY US SECTION -->
+    <section>
+        <div class="section-title">
+            <h2>Kenapa Harus Memilih Kami?</h2>
+            <p>Kualitas bukan janji, tapi bukti</p>
+        </div>
+        <div class="features">
+            <div class="card">
+                <i class='bx bx-time-five'></i>
+                <h3>Uptime 99.9%</h3>
+                <p>Server online nonstop dengan sistem monitoring 24/7 untuk meminimalkan downtime.</p>
+            </div>
+            <div class="card">
+                <i class='bx bx-tachometer'></i>
+                <h3>Performa Tinggi</h3>
+                <p>SSD / NVMe, CPU kencang, dan resource dedicated untuk performa maksimal.</p>
+            </div>
+            <div class="card">
+                <i class='bx bx-shield-quarter'></i>
+                <h3>Keamanan Maksimal</h3>
+                <p>Proteksi DDoS, sistem keamanan berlapis, dan isolasi server.</p>
+            </div>
+            <div class="card">
+                <i class='bx bx-bot'></i>
+                <h3>Optimized Bot & Panel</h3>
+                <p>Siap untuk Bot WhatsApp, Telegram, NodeJS, dan Panel Pterodactyl.</p>
+            </div>
+            <div class="card">
+                <i class='bx bx-support'></i>
+                <h3>Support Aktif</h3>
+                <p>Tim support ramah, cepat, dan siap membantu kapan pun dibutuhkan.</p>
+            </div>
+            <div class="card">
+                <i class='bx bx-wallet'></i>
+                <h3>Harga Bersahabat</h3>
+                <p>Paket fleksibel, transparan, dan bisa upgrade kapan saja.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section>
+        <div class="stats">
+            <div class="stat">
+                <h3>99.9%</h3>
+                <p>Uptime Server</p>
+            </div>
+            <div class="stat">
+                <h3>24/7</h3>
+                <p>Monitoring</p>
+            </div>
+            <div class="stat">
+                <h3>1000+</h3>
+                <p>User Aktif</p>
+            </div>
+            <div class="stat">
+                <h3>Fast</h3>
+                <p>Response Support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section>
+        <div class="cta">
+            <h2>Siap Memulai Proyek Anda?</h2>
+            <p>Pilih paket hosting yang sesuai dengan kebutuhan Anda. Mulai dari yang sederhana hingga enterprise.</p>
+            <a href="panels.html" class="btn">Lihat Semua Paket</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            © 2026 <span class="footer-highlight">dhekz Hosting</span> • All Rights Reserved • Hosting Cepat & Stabil
+            <p style="margin-top: 10px; font-size: 14px; opacity: 0.7;">
+                <a href="index.html" style="color: #a5b4fc; text-decoration: none;">Home</a> • 
+                <a href="panels.html" style="color: #a5b4fc; text-decoration: none;">Paket Hosting</a> • 
+                <a href="contact.html" style="color: #a5b4fc; text-decoration: none;">Kontak</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
