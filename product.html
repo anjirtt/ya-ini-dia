@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paket Hosting - dhekz Hosting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            margin: 0;
+            background: #0b0f1a;
+            color: #eaeaea;
+            min-height: 100vh;
+        }
+        
+        /* NAVBAR */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1e293b;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        nav h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        nav a {
+            color: #eaeaea;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: #a5b4fc;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* HEADER */
+        .page-header {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(180deg, #020617, #0b0f1a);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.4), transparent 40%),
+                        radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.4), transparent 40%);
+        }
+        
+        .page-header h1 {
+            font-size: 42px;
+            margin: 0 0 16px;
+            background: linear-gradient(135deg, #eaeaea, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+        
+        .page-header p {
+            opacity: 0.85;
+            margin: 0 auto;
+            max-width: 600px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px 80px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        /* CARD BASE */
+        .panel-card {
+            background: linear-gradient(180deg, #14142b, #0b0b16);
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 0 40px rgba(120, 120, 255, 0.15);
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        /* RGB Border Animation */
+        .panel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 24px;
+            padding: 2px;
+            background: linear-gradient(135deg, 
+                #ff0000, #ff8000, #ffff00, 
+                #80ff00, #00ff80, #00ffff, 
+                #0080ff, #8000ff, #ff0080, #ff0000);
+            background-size: 400% 400%;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+            animation: rgb-border 6s linear infinite;
+            opacity: 0.8;
+        }
+        
+        .panel-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .panel-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(99, 102, 241, 0.3);
+        }
+        
+        /* PANEL CARD */
+        .panel-header-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .panel-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+        }
+        
+        .panel-badge {
+            font-size: 12px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .panel-title {
+            margin: 18px 0 10px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .panel-desc {
+            font-size: 15px;
+            opacity: 0.8;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .panel-spec {
+            margin: 20px 0;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .panel-spec div {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .panel-spec div:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .panel-spec span {
+            opacity: 0.7;
+        }
+        
+        .panel-spec b {
+            color: #a5b4fc;
+            font-weight: 600;
+        }
+        
+        .panel-price {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 24px 0;
+            display: flex;
+            align-items: baseline;
+        }
+        
+        .panel-price span {
+            font-size: 16px;
+            opacity: 0.6;
+            font-weight: 400;
+            margin-left: 5px;
+        }
+        
+        .panel-btn {
+            margin-top: 10px;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #6366f1, #7c3aed);
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .panel-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .panel-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.7);
+        }
+        
+        .panel-btn:hover::before {
+            opacity: 1;
+        }
+        
+        /* FILTER SECTION */
+        .filter-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #eaeaea;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #6366f1, #7c3aed);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+        }
+        
+        /* MODAL STYLES */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: linear-gradient(180deg, #14142b, #0b0b16);
+            border-radius: 24px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 0 50px rgba(99, 102, 241, 0.5);
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            color: #a5b4fc;
+            margin: 0;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: #eaeaea;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            text-align: center;
+        }
+        
+        .payment-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .plan-info-modal {
+            font-size: 20px;
+            color: #a5b4fc;
+            margin-bottom: 5px;
+        }
+        
+        .price-info-modal {
+            font-size: 28px;
+            font-weight: 700;
+            color: #eaeaea;
+        }
+        
+        .qris-container {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .qris-image {
+            width: 100%;
+            border-radius: 8px;
+        }
+        
+        .payment-methods-simple {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .payment-method-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .payment-method-row:last-child {
+            border-bottom: none;
+        }
+        
+        .method-name {
+            font-weight: 600;
+            color: #a5b4fc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .method-number {
+            font-size: 18px;
+            font-weight: 600;
+            color: #eaeaea;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 12px;
+            border-radius: 8px;
+        }
+        
+        .copy-btn-simple {
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.5);
+            color: #a5b4fc;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+            margin-left: 10px;
+        }
+        
+        .copy-btn-simple:hover {
+            background: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .copy-btn-simple.copied {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+        
+        .nominal-info {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .nominal-label {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .nominal-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: #10b981;
+        }
+        
+        .confirmation-section {
+            margin-top: 25px;
+            text-align: center;
+        }
+        
+        .confirmation-title {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #a5b4fc;
+            font-weight: 600;
+        }
+        
+        .confirmation-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .confirm-btn {
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .confirm-btn-wa {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+        
+        .confirm-btn-tg {
+            background: linear-gradient(135deg, #0088cc, #005580);
+            color: white;
+        }
+        
+        .confirm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .instructions {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            font-size: 12px;
+            opacity: 0.7;
+            text-align: left;
+        }
+        
+        /* FOOTER */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            background: #020617;
+            border-top: 1px solid #1e293b;
+            font-size: 15px;
+            opacity: 0.8;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-highlight {
+            color: #a5b4fc;
+            font-weight: 600;
+        }
+        
+        /* RGB BORDER ANIMATION */
+        @keyframes rgb-border {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 32px;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 16px 20px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .panel-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            
+            .filter-buttons {
+                gap: 8px;
+            }
+            
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+            
+            .confirmation-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-method-row {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+            
+            .method-name {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-brand">
+            <div class="logo-icon">🖥️</div>
+            <h1>dhekz Hosting</h1>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html" style="color: #a5b4fc;">Paket Hosting</a>
+            <a href="contact.html">Kontak</a>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="header-bg"></div>
+        <h1>Paket Hosting Panel</h1>
+        <p><span style="color: #a5b4fc; font-weight: 600;">Cepat • Stabil • Harga Bersahabat</span><br>Pilih paket yang sesuai dengan kebutuhan proyek NodeJS Anda.</p>
+    </header>
+
+    <!-- CONTAINER -->
+    <div class="container">
+        <!-- Filter Buttons -->
+        <div class="filter-section">
+            <h2 style="margin-bottom: 10px; color: #a5b4fc;">Pilih Kategori</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterProducts('all')">Semua</button>
+                <button class="filter-btn" onclick="filterProducts('standard')">Standard RAM</button>
+                <button class="filter-btn" onclick="filterProducts('premium')">Premium</button>
+                <button class="filter-btn" onclick="filterProducts('unlimited')">Unlimited</button>
+                <button class="filter-btn" onclick="filterProducts('bot')">Bot WhatsApp</button>
+            </div>
+        </div>
+
+        <div class="grid" id="productsGrid">
+            <!-- CARD 1: NodeJS 2GB -->
+            <div class="panel-card" data-category="standard">
+                <div class="panel-header-card">
+                    <div class="panel-icon">🖥️</div>
+                    <span class="panel-badge">POPULAR</span>
+                </div>
+                <h3 class="panel-title">NodeJS 2GB</h3>
+                <p class="panel-desc">Cocok untuk bot ringan dan aplikasi kecil dengan kebutuhan resource minimal.</p>
+                <div class="panel-spec">
+                    <div><span>CPU</span><b>60%</b></div>
+                    <div><span>RAM</span><b>2048 MB</b></div>
+                    <div><span>SSD</span><b>1024 MB</b></div>
+                </div>
+                <div class="panel-price">Rp 3.000 <span>/bulan</span></div>
+                <button class="panel-btn" onclick="showPaymentModal('NodeJS 2GB', 3000)">Pesan Sekarang</button>
+            </div>
+
+            <!-- CARD 2: NodeJS 3GB -->
+            <div class="panel-card" data-category="standard">
+                <div class="panel-header-card">
+                    <div class="panel-icon">⚡</div>
+                    <span class="panel-badge">BEST SELLER</span>
+                </div>
+                <h3 class="panel-title">NodeJS 3GB</h3>
+                <p class="panel-desc">High performance server untuk aplikasi menengah dengan traffic yang stabil.</p>
+                <div class="panel-spec">
+                    <div><span>CPU</span><b>80%</b></div>
+                    <div><span>RAM</span><b>3072 MB</b></div>
+                    <div><span>SSD</span><b>2048 MB</b></div>
+                </div>
+                <div class="panel-price">Rp 4.000 <span>/bulan</span></div>
+                <button class="panel-btn" onclick="showPaymentModal('NodeJS 3GB', 4000)">Pesan Sekarang</button>
+            </div>
+
+            <!-- CARD 3: NodeJS 4GB -->
+            <div class="panel-card" data-category="standard">
+                <div class="panel-header-card">
+                    <div class="panel-icon">🚀</div>
+                    <span class="panel-badge">RECOMMENDED</span>
+                </div>
+                <h3 class="panel-title">NodeJS 4GB</h3>
+                <p class="panel-desc">Untuk aplikasi yang membutuhkan resource lebih besar dengan performa optimal.</p>
+                <div class="panel-spec">
+                    <div><span>CPU</span><b>100%</b></div>
+                    <div><span>RAM</span><b>4096 MB</b></div>
+                    <div><span>SSD</span><b>2048 MB</b></div>
+                </div>
+                <div class="panel-price">Rp 5.000 <span>/bulan</span></div>
+                <button class="panel-btn" onclick="showPaymentModal('NodeJS 4GB', 5000)">Pesan Sekarang</button>
+            </div>
+
+            <!-- CARD 4: NodeJS 5GB -->
+            <div class="panel-card" data-category="premium">
+                <div class="panel-header-card">
+                    <div class="panel-icon">💎</div>
+                    <span class="panel-badge">PREMIUM</span>
+                </div>
+                <h3 class="panel-title">NodeJS 5GB</h3>
+                <p class="panel-desc">Server dengan resource besar untuk aplikasi kompleks dan database.</p>
+                <div class="panel-spec">
+                    <div><span>CPU</span><b>120%</b></div>
+                    <div><span>RAM</span><b>5120 MB</b></div>
+                    <div><span>SSD</span><b>3072 MB</b></div>
+                </div>
+                <div class="panel-price">Rp 6.000 <span>/bulan</span></div>
+                <button class="panel-btn" onclick="showPaymentModal('NodeJS 5GB', 6000)">Pesan Sekarang</button>
+            </div>
+
+            <!-- CARD 5: NodeJS 6GB -->
+            <div class="panel-card" data-category="premium">
+                <div class="panel-header-card">
+                    <div class="panel-icon">🔥</div>
+                    <span class="panel-badge">HOT</span>
+                </div>
+                <h3 class="panel-title">NodeJS 6GB</h3>
+                <p class="panel-desc">Untuk aplikasi enterprise dengan kebutuhan resource tinggi.</p>
+                <div class="panel-spec">
+                    <div><span>CPU</span><b>140%</b></div>
+                    <div><span>RAM</span><b>6144 MB</b></div>
+                    <div><span>SSD</span><b>3072 MB</b></div>
+                </div>
+                <div class="panel-price">Rp 7.000 <span>/bulan</span></div>
+                <button class="panel-btn" onclick="showPaymentModal('NodeJS 6GB', 7000)">Pesan Sekarang</button>
+            </div>
+
+            <!-- CARD 6: NodeJS 7GB -->
+            <div class="panel-card" data-category="premium">
+                <div class="panel-header-card">
+                    <div class="panel-icon">⚡</div>
+                    <span class="panel-badge">ULTRA</span>
+                </div>
+                <h3 class="panel-title">NodeJS 7GB</h3>
+                <p class="panel-desc">Performa maksimal untuk aplikasi dengan traffic sangat tinggi.</p>
+                <div class="panel-spec">
+                    <div><span>CPU</span><b>160%</b></div>
+                    <div><span>RAM</span><b>7168 MB</b></div>
+                    <div><span>SSD</span><b>4096 MB</b></div>
+                </div>
+                <div class="panel-price">Rp 8.000 <span>/bulan</span></div>
+                <button class="panel-btn" onclick="showPaymentModal('NodeJS 7GB', 8000)">Pesan Sekarang</button>
+            </div>
+
+            <!-- CARD 7: NodeJS 8GB -->
+            <div class="panel-card" data-category="premium">
+                <div class="panel-header-card">
+                    <div class="panel-icon">🏆</div>
+                    <span class="panel-badge">TOP</span>
+                </div>
+                <h3 class="panel-title">NodeJS 8GB</h3>
+                <p class="panel-desc">Solusi terbaik untuk aplikasi dengan jutaan pengguna.</p>
+                <div class="panel-spec">
+                    <div><span>CPU</span><b>180%</b></div>
+                    <div><span>RAM</span><b>8192 MB</b></div>
+                    <div><span>SSD</span><b>4096 MB</b></div>
+                </div>
+                <div class="panel-price">Rp 9.000 <span>/bulan</span></div>
+                <button class="panel-btn" onclick="showPaymentModal('NodeJS 8GB', 9000)">Pesan Sekarang</button>
+            </div>
+
+            <!-- CARD 8: NodeJS 9GB -->
+            <div class="panel-card" data-category="premium">
+                <div class="panel-header-card">
+                    <div class="panel-icon">👑</div>
+                    <span class="panel-badge">ELITE</span>
+                </div>
+                <h3 class="panel-title">NodeJS 9GB</h3>
+                <p class="panel-desc">Untuk aplikasi paling kompleks dengan performa tanpa kompromi.</p>
+                <div class="panel-spec">
+                    <div><span>CPU</span><b>200%</b></div>
+                    <div><span>RAM</span><b>9216 MB</b></div>
+                    <div><span>SSD</span><b>5120 MB</b></div>
+                </div>
+                <div class="panel-price">Rp 10.000 <span>/bulan</span></div>
+                <button class="panel-btn" onclick="showPaymentModal('NodeJS 9GB', 10000)">Pesan Sekarang</button>
+            </div>
+
+            <!-- CARD 9: NodeJS Unlimited -->
+            <div class="panel-card" data-category="unlimited">
+                <div class="panel-header-card">
+                    <div class="panel-icon">🌌</div>
+                    <span class="panel-badge">UNLIMITED</span>
+                </div>
+                <h3 class="panel-title">NodeJS Unlimited</h3>
+                <p class="panel-desc">Tanpa batas resource untuk aplikasi besar dengan kebutuhan performa maksimal.</p>
+                <div class="panel-spec">
+                    <div><span>CPU</span><b>Unlimited</b></div>
+                    <div><span>RAM</span><b>Unlimited</b></div>
+                    <div><span>SSD</span><b>Unlimited</b></div>
+                </div>
+                <div class="panel-price">Rp 15.000 <span>/bulan</span></div>
+                <button class="panel-btn" onclick="showPaymentModal('NodeJS Unlimited', 15000)">Pesan Sekarang</button>
+            </div>
+
+            <!-- CARD 10: Bot WhatsApp -->
+            <div class="panel-card" data-category="bot">
+                <div class="panel-header-card">
+                    <div class="panel-icon">🤖</div>
+                    <span class="panel-badge">script BOT WhatsApp</span>
+                </div>
+                <h3 class="panel-title">Bot WhatsApp</h3>
+                <p class="panel-desc">script bot WhatsApp</p>
+                <div class="panel-spec">
+                    <div><span>CPU</span><b>75%</b></div>
+                    <div><span>RAM</span><b>2048 MB</b></div>
+                    <div><span>SSD</span><b>5120 MB</b></div>
+                </div>
+                <div class="panel-price">Rp 50.000 <span>/free update</span></div>
+                <button class="panel-btn" onclick="showPaymentModal('Bot WhatsApp', 50000)">Pesan Sekarang</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL PEMBAYARAN -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Pembayaran</h3>
+                <button class="close-btn" onclick="closePaymentModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <!-- Info Paket -->
+                <div class="payment-info">
+                    <div class="plan-info-modal" id="modalPlanName">NodeJS 2GB</div>
+                    <div class="price-info-modal" id="modalPlanPrice">Rp 3.000</div>
+                </div>
+                
+                <!-- QRIS -->
+                <div class="qris-container">
+                    <img src="https://files.catbox.moe/k30u4k.jpeg" alt="QRIS Pembayaran" class="qris-image">
+                </div>
+                
+                <!-- Nomor Pembayaran Sederhana -->
+                <div class="payment-methods-simple">
+                    <div class="payment-method-row">
+                        <div class="method-name">
+                            <i class='bx bx-wallet'></i> DANA
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <span class="method-number" id="danaNumber">085764130028</span>
+                            <button class="copy-btn-simple" onclick="copyToClipboard('danaNumber')">Salin</button>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-method-row">
+                        <div class="method-name">
+                            <i class='bx bx-credit-card'></i> Gopay
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <span class="method-number" id="gopayNumber">085764130028</span>
+                            <button class="copy-btn-simple" onclick="copyToClipboard('gopayNumber')">Salin</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Nominal -->
+                <div class="nominal-info">
+                    <div class="nominal-label">Transfer tepat sebesar:</div>
+                    <div class="nominal-amount" id="modalNominal">Rp 3.000</div>
+                </div>
+                
+                <!-- Konfirmasi Pembayaran -->
+                <div class="confirmation-section">
+                    <div class="confirmation-title">Kirim Bukti Pembayaran:</div>
+                    <div class="confirmation-buttons">
+                        <button class="confirm-btn confirm-btn-wa" onclick="confirmPayment('whatsapp')">
+                            <i class='bx bxl-whatsapp'></i> WhatsApp
+                        </button>
+                        <button class="confirm-btn confirm-btn-tg" onclick="confirmPayment('telegram')">
+                            <i class='bx bxl-telegram'></i> Telegram
+                        </button>
+                    </div>
+                    <div class="instructions">
+                        <strong>Catatan:</strong> Kirim screenshot bukti transfer dan sertakan nama/nickname Anda.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            © 2026 <span class="footer-highlight">dhekz Hosting</span> • All Rights Reserved • Hosting Panel Modern
+            <p style="margin-top: 10px; font-size: 14px; opacity: 0.7;">
+                <a href="index.html" style="color: #a5b4fc; text-decoration: none;">Home</a> • 
+                <a href="products.html" style="color: #a5b4fc; text-decoration: none;">Paket Hosting</a> • 
+                <a href="contact.html" style="color: #a5b4fc; text-decoration: none;">Kontak</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer untuk animasi card
+        const cards = document.querySelectorAll('.panel-card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('show'), i * 180);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        cards.forEach(card => observer.observe(card));
+
+        // Filter produk berdasarkan kategori
+        function filterProducts(category) {
+            // Update button aktif
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter cards
+            const allCards = document.querySelectorAll('.panel-card');
+            
+            allCards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.classList.add('show');
+                    }, 100);
+                } else {
+                    if (card.dataset.category === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.classList.add('show');
+                        }, 100);
+                    } else {
+                        card.classList.remove('show');
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                }
+            });
+        }
+
+        // Variabel untuk menyimpan data paket yang dipilih
+        let selectedPlan = {
+            name: '',
+            price: 0
+        };
+
+        // Tampilkan modal pembayaran
+        function showPaymentModal(planName, price) {
+            // Simpan data paket yang dipilih
+            selectedPlan.name = planName;
+            selectedPlan.price = price;
+            
+            // Update konten modal
+            document.getElementById('modalPlanName').textContent = planName;
+            document.getElementById('modalPlanPrice').textContent = `Rp ${price.toLocaleString()}`;
+            document.getElementById('modalNominal').textContent = `Rp ${price.toLocaleString()}`;
+            
+            // Tampilkan modal
+            document.getElementById('paymentModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Update tombol yang diklik
+            const currentButton = event.target;
+            currentButton.classList.add('processing');
+            currentButton.innerHTML = 'Membuka...';
+            currentButton.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            
+            setTimeout(() => {
+                currentButton.classList.remove('processing');
+                currentButton.innerHTML = 'Pesan Sekarang';
+                currentButton.style.background = 'linear-gradient(135deg, #6366f1, #7c3aed)';
+            }, 1000);
+        }
+
+        // Tutup modal pembayaran
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Copy nomor ke clipboard
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const button = event.target;
+                const originalText = button.textContent;
+                
+                button.textContent = 'Tersalin!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Gagal menyalin: ', err);
+                // Fallback untuk browser lama
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Tersalin!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Konfirmasi pembayaran
+        function confirmPayment(method) {
+            const whatsappNumber = "6285764130028"; // Nomor WhatsApp Anda
+            const telegramUsername = "uwohm"; // Username Telegram Anda
+            
+            // Format pesan otomatis
+            const currentDate = new Date();
+            const formattedDate = currentDate.toLocaleDateString('id-ID', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            });
+            const formattedTime = currentDate.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            let message = `Halo dhekz Hosting, saya ingin konfirmasi pembayaran:\n\n`;
+            message += `📦 *Paket:* ${selectedPlan.name}\n`;
+            message += `💰 *Nominal:* Rp ${selectedPlan.price.toLocaleString()}\n`;
+            message += `📅 *Tanggal:* ${formattedDate}\n`;
+            message += `⏰ *Waktu:* ${formattedTime}\n\n`;
+            message += `Saya sudah transfer via DANA/Gopay dan akan mengirim bukti screenshot.`;
+            
+            if (method === 'whatsapp') {
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappURL, '_blank');
+            } else if (method === 'telegram') {
+                const telegramURL = `https://t.me/${telegramUsername}?text=${encodeURIComponent(message)}`;
+                window.open(telegramURL, '_blank');
+            }
+            
+            // Tutup modal setelah konfirmasi
+            setTimeout(() => {
+                closePaymentModal();
+            }, 500);
+        }
+
+        // Tutup modal saat klik di luar konten
+        document.getElementById('paymentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePaymentModal();
+            }
+        });
+
+        // Efek hover pada tombol di card
+        const buttons = document.querySelectorAll('.panel-btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('processing') && !this.classList.contains('success')) {
+                    this.style.transform = 'scale(1.03)';
+                    this.style.boxShadow = '0 0 30px rgba(99, 102, 241, 0.7)';
+                }
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('processing') && !this.classList.contains('success')) {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+  </html>
