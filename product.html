@@ -710,7 +710,7 @@
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="products.html" style="color: #a5b4fc;">Paket Hosting</a>
+            <a href="product.html" style="color: #a5b4fc;">Paket Hosting</a>
             <a href="contact.html">Kontak</a>
         </div>
     </nav>
@@ -728,15 +728,15 @@
         <div class="filter-section">
             <h2 style="margin-bottom: 10px; color: #a5b4fc;">Pilih Kategori</h2>
             <div class="filter-buttons">
-                <button class="filter-btn active" onclick="filterProducts('all')">Semua</button>
-                <button class="filter-btn" onclick="filterProducts('standard')">Standard RAM</button>
-                <button class="filter-btn" onclick="filterProducts('premium')">Premium</button>
-                <button class="filter-btn" onclick="filterProducts('unlimited')">Unlimited</button>
-                <button class="filter-btn" onclick="filterProducts('bot')">Bot WhatsApp</button>
+                <button class="filter-btn active" onclick="filterproduct('all')">Semua</button>
+                <button class="filter-btn" onclick="filterproduct('standard')">Standard RAM</button>
+                <button class="filter-btn" onclick="filterproduct('premium')">Premium</button>
+                <button class="filter-btn" onclick="filterproduct('unlimited')">Unlimited</button>
+                <button class="filter-btn" onclick="filterproduct('bot')">Bot WhatsApp</button>
             </div>
         </div>
 
-        <div class="grid" id="productsGrid">
+        <div class="grid" id="productGrid">
             <!-- CARD 1: NodeJS 2GB -->
             <div class="panel-card" data-category="standard">
                 <div class="panel-header-card">
@@ -983,7 +983,7 @@
             © 2026 <span class="footer-highlight">dhekz Hosting</span> • All Rights Reserved • Hosting Panel Modern
             <p style="margin-top: 10px; font-size: 14px; opacity: 0.7;">
                 <a href="index.html" style="color: #a5b4fc; text-decoration: none;">Home</a> • 
-                <a href="products.html" style="color: #a5b4fc; text-decoration: none;">Paket Hosting</a> • 
+                <a href="product.html" style="color: #a5b4fc; text-decoration: none;">Paket Hosting</a> • 
                 <a href="contact.html" style="color: #a5b4fc; text-decoration: none;">Kontak</a>
             </p>
         </div>
@@ -1003,7 +1003,7 @@
         cards.forEach(card => observer.observe(card));
 
         // Filter produk berdasarkan kategori
-        function filterProducts(category) {
+        function filterproduct(category) {
             // Update button aktif
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
@@ -1177,4 +1177,4 @@
         });
     </script>
 </body>
-  </html>
+</html>
